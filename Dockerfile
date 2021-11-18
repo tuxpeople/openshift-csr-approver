@@ -1,5 +1,5 @@
 FROM python:3.10.0-alpine AS deps
-ADD requirements.txt requirements.txt
+COPY requirements.txt requirements.txt
 RUN apk --update add gcc build-base libffi-dev openssl-dev && \
     pip install -r requirements.txt
 
