@@ -1,7 +1,7 @@
 FROM python:3.10.0-alpine AS deps
 COPY requirements.txt requirements.txt
 RUN apk --update --no-cache add gcc build-base libffi-dev openssl-dev && \
-    pip install -r requirements.txt
+    pip install --no-cache-dir -r requirements.txt
 
 FROM python:3.10.0-alpine AS install
 ADD . .
