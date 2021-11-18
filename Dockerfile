@@ -2,7 +2,7 @@ FROM python:3.8-alpine AS deps
 # hadolint ignore=DL3045
 COPY requirements.txt requirements.txt
 # hadolint ignore=DL3018
-RUN apk --update --no-cache add gcc build-base libffi-dev openssl-dev && \
+RUN apk --update --no-cache add gcc build-base libffi-dev openssl-dev rust cargo && \
     pip install --no-cache-dir -r requirements.txt
 
 FROM python:3.8-alpine AS install
