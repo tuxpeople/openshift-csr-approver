@@ -9,7 +9,8 @@ FROM python:3.8-alpine AS install
 # hadolint ignore=DL3045
 COPY . .
 COPY --from=deps /usr/local/lib/python3.8/site-packages /usr/local/lib/python3.8/site-packages
-RUN python setup.py install
+RUN apk --update --no-cache add libgcc && \
+    python setup.py install
 
 FROM python:3.8-alpine
 COPY --from=install /usr/local/lib/python3.8/site-packages /usr/local/lib/python3.8/site-packages
