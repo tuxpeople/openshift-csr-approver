@@ -1,6 +1,6 @@
 FROM python:3.10.0-alpine AS deps
 COPY requirements.txt requirements.txt
-RUN apk --update add gcc build-base libffi-dev openssl-dev && \
+RUN apk --update --no-cache add gcc build-base libffi-dev openssl-dev && \
     pip install -r requirements.txt
 
 FROM python:3.10.0-alpine AS install
@@ -11,6 +11,3 @@ RUN python setup.py install
 FROM python:3.10.0-alpine
 COPY --from=install /usr/local/lib/python3.8/site-packages /usr/local/lib/python3.8/site-packages
 ENTRYPOINT ["/usr/local/bin/python3.8", "-m", "openshift_csr_approver"]
-
-LABEL maintainer="Adfinis SyGroup AG <support@adfinis-sygroup.ch>"
-LABEL version="0.1.2"
