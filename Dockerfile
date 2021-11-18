@@ -1,10 +1,11 @@
 FROM python:3.10.0-alpine AS deps
 COPY requirements.txt requirements.txt
+# hadolint ignore=DL3018
 RUN apk --update --no-cache add gcc build-base libffi-dev openssl-dev && \
     pip install --no-cache-dir -r requirements.txt
 
 FROM python:3.10.0-alpine AS install
-ADD . .
+COPY . .
 COPY --from=deps /usr/local/lib/python3.8/site-packages /usr/local/lib/python3.8/site-packages
 RUN python setup.py install
 
