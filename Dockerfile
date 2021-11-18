@@ -8,9 +8,9 @@ RUN apk --update --no-cache add gcc build-base libffi-dev openssl-dev && \
 FROM python:3.10.0-alpine AS install
 # hadolint ignore=DL3045
 COPY . .
-COPY --from=deps /usr/local/lib/python3.8/site-packages /usr/local/lib/python3.8/site-packages
+COPY --from=deps /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages
 RUN python setup.py install
 
 FROM python:3.10.0-alpine
-COPY --from=install /usr/local/lib/python3.8/site-packages /usr/local/lib/python3.8/site-packages
-ENTRYPOINT ["/usr/local/bin/python3.8", "-m", "openshift_csr_approver"]
+COPY --from=install /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages
+ENTRYPOINT ["/usr/local/bin/python3.10", "-m", "openshift_csr_approver"]
