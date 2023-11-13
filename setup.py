@@ -17,7 +17,7 @@ setup(
     python_requires='>=3.6',
     install_requires=[
         'pyyaml==5.4',
-        'kubernetes==10.0.1',
+        'kubernetes==28.1.0',
         'pyopenssl==19.1.0'
     ],
     entry_points={
