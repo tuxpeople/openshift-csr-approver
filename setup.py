@@ -18,7 +18,7 @@ setup(
     install_requires=[
         'pyyaml==6.0.1',
         'kubernetes==29.0.0',
-        'pyopenssl==24.0.0'
+        'pyopenssl==24.1.0'
     ],
     entry_points={
         'console_scripts': [
